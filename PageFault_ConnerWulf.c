@@ -17,7 +17,7 @@ typedef struct Node
 
 
 //Function definitions
-int search_queue(Node *head);
+int search_queue(Node *head, int pNum);
 void print_queue(Node *head);
 int dequeue(Node **head);
 void enqueue(Node **head, int pNum);
