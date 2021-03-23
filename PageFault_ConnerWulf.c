@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 
-		while((pageNumber = fgets(file)) != EOF)
+		while((pageNumber = fgetc(file)) != EOF)
 		{
 			if(pageNumber != " ")
 			{
