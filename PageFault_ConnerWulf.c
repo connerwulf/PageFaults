@@ -30,7 +30,7 @@ void enqueue(Node **head, int pNum);
 int main(int argc, char *argv[])
 {
 	Node *head = NULL;
-	FILE file;
+	FILE *file;
 	int pageNumber;
 	int numOfPFs = 0;
 	int usedFrames = 0;
