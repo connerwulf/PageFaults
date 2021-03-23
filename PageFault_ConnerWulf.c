@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 				}
 				else
 				{
-					int noFault = search_queue(&head, pageNumber);
+					int noFault = search_queue(head, pageNumber);
 					if(noFault == 1)
 					{
 						// do nothing
