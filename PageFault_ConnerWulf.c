@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
 		while((pageNumber = fgetc(file)) != EOF)
 		{
-			if(*pageNumber != "\t")
+			if(*pageNumber != NULL)
 			{
 				if(head == NULL)
 				{
