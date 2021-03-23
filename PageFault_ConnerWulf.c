@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 		}
 
 
-		printf("Page Faults: %d"\n, numOfPFs);
+		printf("Page Faults: %d\n", numOfPFs);
 		print_queue(head);
 	}
 }
@@ -104,13 +104,12 @@ void print_queue(Node *head)
 }
 
 //Debug print for custom queue
-int search_queue(Node *head, Page *searchPage)
+int search_queue(Node *head, int searchPage)
 {
 	Node *temp = head;
 	while (temp != NULL)
 	{
-		Page *PageTemp = malloc(sizeof(Page));
-		PageTemp = temp->Page;
+		int PageTemp = temp->Page_Num;
 		if(PageTemp == searchPage)
 		{
 			temp = NULL;
@@ -121,6 +120,7 @@ int search_queue(Node *head, Page *searchPage)
 				temp = temp->ptr;
 		}
 	}
+	return 0;
 }
 
 
