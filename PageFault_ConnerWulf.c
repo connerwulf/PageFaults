@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	printf("%s %s %s\n", argv[1],  argv[2],  argv[3]);
 	if(argv[1] == "FIFO")
 	{
-		print("It does");
+		printf("It does");
 		if(!(file = fopen(argv[2], "rt")))
 		{
 			perror("Problem reading in file\n");
