@@ -34,9 +34,10 @@ int main(int argc, char *argv[])
 	int pageNumber;
 	int numOfPFs = 0;
 	int usedFrames = 0;
-	printf("%s %s %s", argv[1],  argv[2],  argv[3]);
+	printf("%s %s %s\n", argv[1],  argv[2],  argv[3]);
 	if(argv[1] == "FIFO")
 	{
+		print("It does");
 		if(!(file = fopen(argv[2], "rt")))
 		{
 			perror("Problem reading in file\n");
