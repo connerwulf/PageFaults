@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
 		while((pageNumber = fgetc(file)) != EOF)
 		{
-			printf("%d\n", (int)pageNumber);
+			printf("%c\n", pageNumber);
 			if(pageNumber != ' ')
 			{
 				if(head == NULL)
@@ -101,7 +101,7 @@ void print_queue(Node *head)
 	{
 		int pagenumTemp = temp->Page_Num;
 
-		printf("Frame %d has page %d\n",num, pagenumTemp );
+		printf("Frame %d has page %c\n",num, pagenumTemp );
 		num++;
 		temp = temp->ptr;
 	}
