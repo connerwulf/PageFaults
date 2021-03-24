@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	int numOfPFs = 0;
 	int usedFrames = 0;
 	printf("%s %s %s\n", argv[1],  argv[2],  argv[3]);
-	if(argv[1] == "FIFO")
+	if((int scmp = strcmp(argv[1], "FIFO")) == 0)
 	{
 		printf("It does");
 		if(!(file = fopen(argv[2], "rt")))
