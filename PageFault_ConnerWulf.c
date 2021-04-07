@@ -34,12 +34,16 @@ int recentlyUsed(Node **head, int value);
 int main(int argc, char *argv[])
 {
 
-	printf("%s %s %s\n", argv[1],  argv[2],  argv[3]);
+	printf("\nMemory Size = %s\n", argv[3]);
 
 	int isFIFO = strcmp(argv[1], "FIFO");
 	int isLRU = strcmp(argv[1], "LRU");
 	int maxFrames = atoi(argv[3]);
-
+	if(maxFrames < 1 || maxFrames > 50)
+	{
+		printf("Error: memory size must be between 1 and 50, inclusive\n");
+		exit(1);
+	}
 	if(isFIFO == 0)
 	{
 		Node *head = NULL;
@@ -106,7 +110,8 @@ int main(int argc, char *argv[])
 		fclose(file);
 
 
-		printf("Page Faults: %d\n", numOfPFs);
+		printf("\n The number of page faults was %d\n", numOfPFs);
+		printf("\nThe final set of frames is\n");
 		print_queue(head, maxFrames);
 	}
 
@@ -136,7 +141,7 @@ int main(int argc, char *argv[])
 				if(head == NULL)
 				{
 					push(&head, &tail, pageNumber, usedFrames);
-					printf("enqueue page %d\n", pageNumber);
+					//printf("enqueue page %d\n", pageNumber);
 					usedFrames++;
 					numOfPFs++;
 				}
@@ -147,7 +152,7 @@ int main(int argc, char *argv[])
 					{
 
 						push(&head, &tail, pageNumber, usedFrames);
-						printf("enqueue page %d\n", pageNumber);
+						//printf("enqueue page %d\n", pageNumber);
 						usedFrames++;
 						numOfPFs++;
 					}
@@ -161,15 +166,15 @@ int main(int argc, char *argv[])
 					//printf("noFault = %d on %d\n", noFault, pageNumber);
 					if(noFault == 1)
 					{
-						printf("no fault\n");
+						//printf("no fault\n");
 					}
 					else
 					{
 
 						int temp = dequeue(&head);
-						printf("dequeue frame %d\n", temp);
+						//printf("dequeue frame %d\n", temp);
 						push(&head, &tail, pageNumber, temp);
-						printf("enqueue page %d\n", pageNumber);
+						//printf("enqueue page %d\n", pageNumber);
 						numOfPFs++;
 					}
 				}
@@ -184,6 +189,11 @@ int main(int argc, char *argv[])
 		printf("Page Faults: %d\n", numOfPFs);
 		print_queue(head, maxFrames);
 
+	}
+	else
+	{
+		printf("Error: Algorithm not supported Please enter Either LRU or FIFO for First parameter\n");
+		exit(1);
 	}
 }
 
