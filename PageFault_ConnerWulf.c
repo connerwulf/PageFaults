@@ -186,7 +186,8 @@ int main(int argc, char *argv[])
 		fclose(file);
 
 
-		printf("Page Faults: %d\n", numOfPFs);
+		printf("\n The number of page faults was %d\n", numOfPFs);
+		printf("\nThe final set of frames is\n");
 		print_queue(head, maxFrames);
 
 	}
