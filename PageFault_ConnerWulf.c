@@ -7,7 +7,7 @@
 Author: Conner Wulf
 
 Approach: 
-	FIFO (Starts Line:)
+	FIFO (Starts Line: 80)
 		For the FIFO Alogrithm, I used a normal queue since a queue operates in a FIFO fashion.
 		The Queue is built up of nodes that contain a couple pointers, page number, and what frame
 		that page number is in. The FIFO Alogrithm then loops through the input file and adds N Nodes with unique
@@ -16,7 +16,7 @@ Approach:
 		it will simply dequeue then enqueue the next value, Keeping the FIFO state. Frame number was added to the Node struct
 		to aid the print_queue function when printing the queue in order by Frames
 
-	LRU (Starts Line:)
+	LRU (Starts Line: 177)
 		This implementation of LRU works very similar to the FIFO alogrithm with one major change. The initial N Frames are filled
 		in the same way as the FIFO Algorithm, However whenever the LRU alogrithm needs to search the queue, it will use the function
 		recentlyUsed() instead of search_queue(). The main difference between these two aglorithms when the recentlyUsed() function finds a match
@@ -36,22 +36,22 @@ typedef struct Node
 
 
 //Function definitions
-//Start and explanation at Line:
+//Start and explanation at Line: 326
 int search_queue(Node *head, int pNum);
 
-//Start and explanation at Line:
+//Start and explanation at Line: 288
 void print_queue(Node *head, int length);
 
-//Start and explanation at Line:
+//Start and explanation at Line: 346
 int dequeue(Node **head);
 
-//Start and explanation at Line:
+//Start and explanation at Line: 378
 void enqueue(Node **head, int pNum, int frameNum);
 
-//Start and explanation at Line:
+//Start and explanation at Line: 394
 void push(Node **head, Node **tail, int pNum, int frameNum);
 
-//Start and explanation at Line:
+//Start and explanation at Line: 425
 int recentlyUsed(Node **head, int value);
 
 
