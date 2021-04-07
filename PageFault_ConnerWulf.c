@@ -114,16 +114,6 @@ int main(int argc, char *argv[])
 	{
 		Node *head = NULL;
 		Node *tail = NULL;
-
-		// push(&head, &tail, 1, 1);
-		// push(&head, &tail, 2, 2);
-		// push(&head, &tail, 3, 3);
-		// push(&head, &tail, 4, 4);
-		// recentlyUsed(&head, 2);
-		// printf("popped %d\n",removeLRU(&tail));
-		// printf("popped %d\n",removeLRU(&tail));
-		// printf("popped %d\n",removeLRU(&tail));
-		// printf("popped %d\n",removeLRU(&tail));
 		
 		FILE *file;
 		int pageNumber;
@@ -165,16 +155,18 @@ int main(int argc, char *argv[])
 				}
 				else
 				{
-					print_queue(head, maxFrames);
-					printf("LRU Page = %d\n", tail->Page_Num);
+					//print_queue(head, maxFrames);
+					//printf("abouttocheck\n");
 					int noFault = recentlyUsed(&head, pageNumber);
+					//printf("noFault = %d on %d\n", noFault, pageNumber);
 					if(noFault == 1)
 					{
 						printf("no fault\n");
 					}
 					else
 					{
-						int temp = removeLRU(&tail);
+
+						int temp = dequeue(&head);
 						printf("dequeue frame %d\n", temp);
 						push(&head, &tail, pageNumber, temp);
 						printf("enqueue page %d\n", pageNumber);
@@ -206,6 +198,14 @@ void print_queue(Node *head, int length)
 	Node *temp = head;
 	int num = 0;
 	int pagenumTemp = -1;
+	// while(temp != NULL) 
+	// {
+	// 	pagenumTemp = temp->Page_Num;
+	// 	printf("Frame %d has page %d\n",num, pagenumTemp );
+	// 	 	temp = temp->ptr;
+	// 	 	num++;
+	// }
+
 	while(num <= length) 
 	{
 		if(temp->FrameNum == num)
@@ -343,15 +343,19 @@ int recentlyUsed(Node **head, int value)
 	Node *hold = *head;
 	Node *prev = NULL;
 	Node *next = NULL;
-
+	
 	while (temp != NULL)
 	{
+
 		int PageTemp = temp->Page_Num;
-		//printf("%d\n", PageTemp);
+		
 		if(PageTemp == value)
 		{
-
-			if(temp != *head)
+			if(temp == *head)
+			{
+				return 1;
+			}
+			else if(temp != *head && temp->ptr != NULL)
 			{
 				prev = temp->ptr;
 				next = temp->ptr_fwd;
@@ -363,6 +367,18 @@ int recentlyUsed(Node **head, int value)
 				*head = temp;
 				temp = temp->ptr;
 
+				return 1;
+			}
+			
+			else if(temp->ptr == NULL)
+			{
+				next = temp->ptr_fwd;
+				next->ptr = NULL;
+				temp->ptr = *head;
+				hold->ptr_fwd = temp;
+				temp->ptr_fwd = NULL;
+				*head = temp;
+				temp = temp->ptr;
 				return 1;
 			}
 			else
